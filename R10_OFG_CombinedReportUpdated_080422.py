@@ -3,7 +3,7 @@
 """
 Created on Wed Jun 16 07:21:14 2021
 
-@author: jgcobb, christalrhigdon, kmmiles
+@author: kmmiles
 """
 
 import sys
@@ -35,7 +35,7 @@ class Toolbox(object):
     def __init__(self):
         """Define the toolbox (the name of the toolbox is the name of the
         .pyt file)."""
-        self.label = "R10 Outfitter Guide Tools"
+        self.label = "Example Tools"
         self.alias = ""
 
         # List of tool classes associated with this toolbox
@@ -48,7 +48,7 @@ class GuidedRecDetail:
     def __init__(self, business_name, startdate, enddate, certification, save_path):
 
         self.row = 4
-        wb_path = r'T:\FS\NFS\R10\Program\2700SpecialUsesMgmt\GIS\R10OGDatabase\ToolData\guided_rec_detail_template.xlsx'
+        wb_path = r'{'ExamplePath'}\guided_rec_detail_template.xlsx'
         wb = load_workbook(wb_path)
 
         savebusiness = re.sub(r'[^A-Za-z0-9]+', '', business_name.title())
@@ -161,11 +161,11 @@ class GuidedRecReport(object):
         self.label = "Run Guided Recreation Detail Report"
         self.canRunInBackground = False
 
-        connection = 'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/'
-        tables = ['S_R10.R10_OFG_GUIDEDREC_ACTIVITY',
-                  'S_R10.R10_OFG_GUIDEDREC_STOP',
-                  'S_R10.R10_OFG_GUIDEDREC_DAY',
-                  'S_R10.R10_OFG_GUIDEDREC_TRIP']
+        connection = '{'ExamplePath'}'
+        tables = ['table1',
+                  'table2',
+                  'table3',
+                  'table4']
         self.tables = [connection + table for table in tables]
 
     def getParameterInfo(self):
@@ -332,7 +332,7 @@ class BusinessXlsCreator(object):
             datatype="DEWorkspace",
             parameterType="Required",
             direction="Input")
-        param0.value = r'T:\FS\Reference\GeoTool\agency\DatabaseConnection\r10_default_as_myself.sde'
+        param0.value = r'{'ExamplePath'}'
         # param1.filter.type = "Workspace"
         # param1.filter.list = ["Remote Database"]
 
@@ -343,7 +343,7 @@ class BusinessXlsCreator(object):
             parameterType="Required",
             direction="Output")
         param1.filter.list = ['xlsx', 'xls']
-        param1.value = r'T:\FS\NFS\R10\Program\2700SpecialUsesMgmt\GIS\R10OGDatabase\ToolData\BusinessNameUpdates.xlsx'
+        param1.value = r'{'ExamplePath'}\ToolData\BusinessNameUpdates.xlsx'
 
         param2 = arcpy.Parameter(
             displayName="Dataset Name",
@@ -383,7 +383,7 @@ class BusinessXlsCreator(object):
         # sde = parameters[0].value.value
         sde = parameters[0].valueAsText
         env.workspace = sde
-        objFilter = 'S_R10.R10_OFG_{}_*'.format(ds)
+        objFilter = '*'.format(ds)
         dsList = [os.path.basename(obj) for obj in arcpy.ListFeatureClasses(objFilter) if
                   not obj.endswith('_MV') and not obj.endswith('_VIEW') and 'CHRISTAL' not in obj]
         dsList += [os.path.basename(obj) for obj in arcpy.ListTables(objFilter) if
@@ -398,7 +398,7 @@ class BusinessXlsCreator(object):
         arcpy.AddMessage("     Dataset: " + ds)
         df_all = pd.DataFrame(columns=['Current', 'New', 'Dataset'])
         for o in ofgList:
-            objFilter = 'S_R10.R10_OFG_{}_*'.format(o)
+            objFilter = '*'.format(o)
             dsList = [os.path.basename(obj) for obj in arcpy.ListFeatureClasses(objFilter) if
                       not obj.endswith('_MV') and not obj.endswith('_VIEW') and 'CHRISTAL' not in obj]
             dsList += [os.path.basename(obj) for obj in arcpy.ListTables(objFilter) if
@@ -444,7 +444,7 @@ class BusinessXlsUpdater(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        param0.value = r'T:\FS\NFS\R10\Program\2700SpecialUsesMgmt\GIS\R10OGDatabase\ToolData\BusinessNameUpdates.xlsx'
+        param0.value = r'{'ExamplePath'}\ToolData\BusinessNameUpdates.xlsx'
 
         param1 = arcpy.Parameter(
             displayName="SDE Connection",
@@ -452,7 +452,7 @@ class BusinessXlsUpdater(object):
             datatype="DEWorkspace",
             parameterType="Required",
             direction="Input")
-        param1.value = r'T:\FS\Reference\GeoTool\agency\DatabaseConnection\r10_default_as_myself.sde'
+        param1.value = r'{'ExamplePath'}'
         # param1.filter.type = "Workspace"
         # param1.filter.list = ["Remote Database"]
 
@@ -505,7 +505,7 @@ class BusinessXlsUpdater(object):
         df = pd.read_excel(xl, header=0).replace("\'", "\'\'", regex=True).dropna()
         # df = df.replace("\'", "\'\'", regex=True)
         # list of fc and tables to update
-        objFilter = 'S_R10.R10_OFG_{}_*'.format(ofg)
+        objFilter = '*'.format(ofg)
         updtObj = [os.path.basename(obj) for obj in arcpy.ListFeatureClasses(objFilter) if
                    not obj.endswith('_MV') and not obj.endswith(
                        '_VIEW') and 'CHRISTAL' not in obj]
@@ -593,7 +593,7 @@ class OutfittingDetail:
     def __init__(self, business_name, startdate, enddate, reporter, certification, forestName, save_path):
 
         self.row = 4
-        wbPath = r'T:\FS\BusOps\EnterpriseProgram\Project\R10\RegionalProjects\R10_OutfitterSurvey\Workspace\kmmiles\Reports\outfitting_detail_template.xlsx'
+        wbPath = r'{'ExamplePath'}\Reports\outfitting_detail_template.xlsx'
         wb = load_workbook(wbPath)
 
         savebusiness = re.sub(r'[^A-Za-z0-9]+', '', business_name.title())
@@ -713,8 +713,8 @@ class OutfittingReport(object):
     def getParameterInfo(self):
         # Define parameter definitions
 
-        connection = r'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/'
-        tables = ['S_R10.R10_OFG_OUTFITTING_ACTIVITY']
+        connection = r'{'ExamplePath'}'
+        tables = ['OUTFITTING_ACTIVITY']
         self.tables = [connection + table for table in tables]
 
         sc = arcpy.da.SearchCursor(self.tables[0], "BUSINESSNAME", sql_clause=("DISTINCT", "ORDER BY BUSINESSNAME"))
@@ -787,7 +787,7 @@ class OutfittingReport(object):
         reporter = None
         certification = None
         forestName = None
-        query1 = "S_R10.R10_OFG_OUTFITTING_ACTIVITY.BUSINESSNAME = '{}' AND S_R10.R10_OFG_OUTFITTING_ACTIVITY.TRIPDATE >= date '{}' AND S_R10.R10_OFG_OUTFITTING_ACTIVITY.TRIPDATE <= date '{}'".format(businessname, startdate.strftime('%Y-%m-%d'), enddate.strftime('%Y-%m-%d'))
+        query1 = "OUTFITTING_ACTIVITY.BUSINESSNAME = '{}' AND OUTFITTING_ACTIVITY.TRIPDATE >= date '{}' AND OUTFITTING_ACTIVITY.TRIPDATE <= date '{}'".format(businessname, startdate.strftime('%Y-%m-%d'), enddate.strftime('%Y-%m-%d'))
 
     
         with arcpy.da.SearchCursor(self.tables[-1], '*', query1) as sc:
@@ -809,7 +809,7 @@ class OutfittingReport(object):
             arcpy.AddWarning("No trips to report in date range.")
             return
     
-        query2 = "S_R10.R10_OFG_OUTFITTING_ACTIVITY.BUSINESSNAME = '{}' AND S_R10.R10_OFG_OUTFITTING_ACTIVITY.TRIPDATE >= date '{}' AND S_R10.R10_OFG_OUTFITTING_ACTIVITY.TRIPDATE <= date '{}'".format(businessname, startdate.strftime('%Y-%m-%d'), enddate.strftime('%Y-%m-%d'))
+        query2 = "OUTFITTING_ACTIVITY.BUSINESSNAME = '{}' AND OUTFITTING_ACTIVITY.TRIPDATE >= date '{}' AND OUTFITTING_ACTIVITY.TRIPDATE <= date '{}'".format(businessname, startdate.strftime('%Y-%m-%d'), enddate.strftime('%Y-%m-%d'))
         use_reports = 0
         with arcpy.da.SearchCursor("QueryTable", '*', query2) as sc:
             fields = [field.split('.')[-1] for field in sc.fields]
@@ -846,7 +846,7 @@ class MendenhallDetail:
     def __init__(self, business_name, startdate, enddate, reporter, certification, save_path):
 
         self.row = 4
-        wbPath = r'T:\FS\BusOps\EnterpriseProgram\Project\R10\RegionalProjects\R10_OutfitterSurvey\Workspace\kmmiles\Reports\mendenhall_detail_template.xlsx'
+        wbPath = r'{'ExamplePath'}\Reports\mendenhall_detail_template.xlsx'
         wb = load_workbook(wbPath)
 
         savebusiness = re.sub(r'[^A-Za-z0-9]+', '', business_name.title())
@@ -965,17 +965,17 @@ class MendenhallReport(object):
     def getParameterInfo(self):
         # Define parameter definitions
         
-        connection = r'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/'
-        tables = ['S_R10.R10_OFG_MENDENHALL_ACTIVITY',
-                  'S_R10.R10_OFG_MENDENHALL_TRIPMONTH']
+        connection = r'{'ExamplePath'}'
+        tables = ['MENDENHALL_ACTIVITY',
+                  'MENDENHALL_TRIPMONTH']
         self.tables = [connection + table for table in tables]
 
         sc = arcpy.da.SearchCursor(self.tables[1], "BUSINESSNAME", sql_clause=("DISTINCT", "ORDER BY BUSINESSNAME"))
         self.business_names = [row[0] for row in sc]
         self.parameters = self.getParameterInfo()
 
-        self.whereClause = "S_R10.R10_OFG_MENDENHALL_TRIPMONTH.TRIP_GUID ="\
-                            "S_R10.R10_OFG_MENDENHALL_ACTIVITY.TRIP_GUID"
+        self.whereClause = "MENDENHALL_TRIPMONTH.TRIP_GUID ="\
+                            "MENDENHALL_ACTIVITY.TRIP_GUID"
 
         param0 = arcpy.Parameter(
             displayName="For trips conducted by",
@@ -1040,7 +1040,7 @@ class MendenhallReport(object):
         trips = OrderedDict()
         reporter = None
         certification = None
-        query1 = "S_R10.R10_OFG_MENDENHALL_TRIPMONTH.BUSINESSNAME = '{}' AND S_R10.R10_OFG_MENDENHALL_TRIPMONTH.REPORTYEAR >= '{}' AND S_R10.R10_OFG_MENDENHALL_TRIPMONTH.REPORTYEAR <= '{}'".format(businessname, startdate, enddate)
+        query1 = "MENDENHALL_TRIPMONTH.BUSINESSNAME = '{}' AND MENDENHALL_TRIPMONTH.REPORTYEAR >= '{}' AND MENDENHALL_TRIPMONTH.REPORTYEAR <= '{}'".format(businessname, startdate, enddate)
 
         with arcpy.da.SearchCursor(self.tables[-1], '*', query1) as sc:
             fields = [field.split('.')[-1] for field in sc.fields]
@@ -1071,7 +1071,7 @@ class MendenhallReport(object):
             arcpy.AddWarning("No trips to report in date range.")
             return
 
-        query2 = "S_R10.R10_OFG_MENDENHALL_TRIPMONTH.BUSINESSNAME = '{}' AND S_R10.R10_OFG_MENDENHALL_TRIPMONTH.REPORTYEAR >= '{}' AND S_R10.R10_OFG_MENDENHALL_TRIPMONTH.REPORTYEAR <= '{}'".format(businessname, startdate, enddate)
+        query2 = "MENDENHALL_TRIPMONTH.BUSINESSNAME = '{}' AND MENDENHALL_TRIPMONTH.REPORTYEAR >= '{}' AND MENDENHALL_TRIPMONTH.REPORTYEAR <= '{}'".format(businessname, startdate, enddate)
         use_reports = 0
                     
                     
@@ -1116,7 +1116,7 @@ class IcefieldDetail:
     def __init__(self, business_name, startdate, enddate, reporter, certification, forestName, save_path):
 
         self.row = 4
-        wbPath = r'T:\FS\BusOps\EnterpriseProgram\Project\R10\RegionalProjects\R10_OutfitterSurvey\Workspace\kmmiles\Reports\icefields_detail_template.xlsx'
+        wbPath = r'{'ExamplePath'}\Reports\icefields_detail_template.xlsx'
         wb = load_workbook(wbPath)
 
         savebusiness = re.sub(r'[^A-Za-z0-9]+', '', business_name.title())
@@ -1234,17 +1234,17 @@ class IcefieldReport(object):
     def getParameterInfo(self):
         # Define parameter definitions
         
-        connection = r'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/'
-        tables = ['S_R10.R10_OFG_ICEFIELD_ACTIVITY',
-                  'S_R10.R10_OFG_ICEFIELD_TRIPMONTH']
+        connection = r'{'ExamplePath'}'
+        tables = ['ICEFIELD_ACTIVITY',
+                  'ICEFIELD_TRIPMONTH']
         self.tables = [connection + table for table in tables]
 
         sc = arcpy.da.SearchCursor(self.tables[0], "BUSINESSNAME", sql_clause=("DISTINCT", "ORDER BY BUSINESSNAME"))
         self.business_names = [row[0] for row in sc]
         self.parameters = self.getParameterInfo()
 
-        self.whereClause = "S_R10.R10_OFG_ICEFIELD_TRIPMONTH.TRIP_GUID ="\
-                            "S_R10.R10_OFG_ICEFIELD_ACTIVITY.TRIP_GUID"
+        self.whereClause = "ICEFIELD_TRIPMONTH.TRIP_GUID ="\
+                            "ICEFIELD_ACTIVITY.TRIP_GUID"
 
         param0 = arcpy.Parameter(
             displayName="For trips conducted by",
@@ -1310,7 +1310,7 @@ class IcefieldReport(object):
         reporter = None
         certification = None
         forestName = 'Tongass'
-        query1 = "S_R10.R10_OFG_ICEFIELD_TRIPMONTH.BUSINESSNAME = '{}' AND S_R10.R10_OFG_ICEFIELD_TRIPMONTH.REPORTYEAR >= '{}' AND S_R10.R10_OFG_ICEFIELD_TRIPMONTH.REPORTYEAR <= '{}'".format(businessname, startdate, enddate)
+        query1 = "ICEFIELD_TRIPMONTH.BUSINESSNAME = '{}' AND ICEFIELD_TRIPMONTH.REPORTYEAR >= '{}' AND ICEFIELD_TRIPMONTH.REPORTYEAR <= '{}'".format(businessname, startdate, enddate)
 
         with arcpy.da.SearchCursor(self.tables[-1], '*', query1) as sc:
             fields = [field.split('.')[-1] for field in sc.fields]
@@ -1339,7 +1339,7 @@ class IcefieldReport(object):
             arcpy.AddWarning("No trips to report in date range.")
             return
 
-        query2 = "S_R10.R10_OFG_ICEFIELD_TRIPMONTH.BUSINESSNAME = '{}' AND S_R10.R10_OFG_ICEFIELD_TRIPMONTH.REPORTYEAR >= '{}' AND S_R10.R10_OFG_ICEFIELD_TRIPMONTH.REPORTYEAR <= '{}'".format(businessname, startdate, enddate)
+        query2 = "ICEFIELD_TRIPMONTH.BUSINESSNAME = '{}' AND ICEFIELD_TRIPMONTH.REPORTYEAR >= '{}' AND ICEFIELD_TRIPMONTH.REPORTYEAR <= '{}'".format(businessname, startdate, enddate)
         use_reports = 0
         with arcpy.da.SearchCursor("QueryTable", '*', query2) as sc:
             fields = [field.split('.')[-1] for field in sc.fields]
@@ -1404,9 +1404,9 @@ class IcefieldSummary(object):
         startYear = str(datetime.today().year -10)
         endYear = str(datetime.today().year)
 
-        connection = r'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/'
-        actTable = '{}S_R10.R10_OFG_ICEFIELD_ACTIVITY'.format(connection)
-        tripTable = '{}S_R10.R10_OFG_ICEFIELD_TRIPMONTH'.format(connection)
+        connection = r'{'ExamplePath'}'
+        actTable = '{}ICEFIELD_ACTIVITY'.format(connection)
+        tripTable = '{}ICEFIELD_TRIPMONTH'.format(connection)
 
         def getFieldNames(shp):
                 fieldnames = [f.name for f in arcpy.ListFields(shp)]
@@ -1607,9 +1607,9 @@ class MendenhallSummary(object):
                 fieldnames = [f.name for f in arcpy.ListFields(shp)]
                 return fieldnames 
 
-        connection = r'T:/FS/Reference/GeoTool/r10/DatabaseConnection/r10_default_as_myself.sde/'
-        mendTrip = '{}S_R10.R10_OFG_MENDENHALL_TRIPMONTH'.format(connection)
-        mendAct = '{}S_R10.R10_OFG_MENDENHALL_ACTIVITY'.format(connection)
+        connection = r'{'ExamplePath'}'
+        mendTrip = '{}MENDENHALL_TRIPMONTH'.format(connection)
+        mendAct = '{}MENDENHALL_ACTIVITY'.format(connection)
         
         
         query = "REPORTYEAR = {}".format(int(reportYr))
@@ -1819,7 +1819,7 @@ class HeliskiDetail:
     def __init__(self, business_name, startdate, enddate, reporter, certification, forestName, save_path):
 
         self.row = 4
-        wbPath = r'T:\FS\BusOps\EnterpriseProgram\Project\R10\RegionalProjects\R10_OutfitterSurvey\Workspace\kmmiles\Reports\heliski_detail_template.xlsx'
+        wbPath = r'{'ExamplePath'}\Reports\heliski_detail_template.xlsx'
         wb = load_workbook(wbPath)
 
         savebusiness = re.sub(r'[^A-Za-z0-9]+', '', business_name.title())
@@ -1937,17 +1937,17 @@ class HeliskiReport(object):
     def getParameterInfo(self):
         # Define parameter definitions
         
-        connection = r'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/'
-        tables = ['S_R10.R10_OFG_HELISKI_ACTIVITY',
-                  'S_R10.R10_OFG_HELISKI_TRIP']
+        connection = r'{'ExamplePath'}'
+        tables = ['HELISKI_ACTIVITY',
+                  'HELISKI_TRIP']
         self.tables = [connection + table for table in tables]
 
         sc = arcpy.da.SearchCursor(self.tables[0], "BUSINESSNAME", sql_clause=("DISTINCT", "ORDER BY BUSINESSNAME"))
         self.business_names = [row[0] for row in sc]
         self.parameters = self.getParameterInfo()
 
-        self.whereClause = "S_R10.R10_OFG_HELISKI_TRIP.TRIP_GUID ="\
-                            "S_R10.R10_OFG_HELISKI_ACTIVITY.TRIP_GUID"        
+        self.whereClause = "HELISKI_TRIP.TRIP_GUID ="\
+                            "HELISKI_ACTIVITY.TRIP_GUID"        
 
         param0 = arcpy.Parameter(
             displayName="For trips conducted by",
@@ -2011,7 +2011,7 @@ class HeliskiReport(object):
         reporter = None
         certification = None
         forestName = None
-        query1 = "S_R10.R10_OFG_HELISKI_TRIP.BUSINESSNAME = '{}' AND S_R10.R10_OFG_HELISKI_TRIP.TRIPDATE >= date '{}' AND S_R10.R10_OFG_HELISKI_TRIP.TRIPDATE <= date '{}'".format(businessname, startdate.strftime('%Y-%m-%d'), enddate.strftime('%Y-%m-%d'))
+        query1 = "HELISKI_TRIP.BUSINESSNAME = '{}' AND HELISKI_TRIP.TRIPDATE >= date '{}' AND HELISKI_TRIP.TRIPDATE <= date '{}'".format(businessname, startdate.strftime('%Y-%m-%d'), enddate.strftime('%Y-%m-%d'))
 
         with arcpy.da.SearchCursor(self.tables[-1], '*', query1) as sc:
             fields = [field.split('.')[-1] for field in sc.fields]
@@ -2032,7 +2032,7 @@ class HeliskiReport(object):
             arcpy.AddWarning("No trips to report in date range.")
             return
 
-        query2 = "S_R10.R10_OFG_HELISKI_TRIP.BUSINESSNAME = '{}' AND S_R10.R10_OFG_HELISKI_TRIP.TRIPDATE >= date '{}' AND S_R10.R10_OFG_HELISKI_TRIP.TRIPDATE <= date '{}'".format(businessname, startdate.strftime('%Y-%m-%d'), enddate.strftime('%Y-%m-%d'))
+        query2 = "HELISKI_TRIP.BUSINESSNAME = '{}' AND HELISKI_TRIP.TRIPDATE >= date '{}' AND HELISKI_TRIP.TRIPDATE <= date '{}'".format(businessname, startdate.strftime('%Y-%m-%d'), enddate.strftime('%Y-%m-%d'))
         use_reports = 0
         with arcpy.da.SearchCursor("QueryTable", '*', query2) as sc:
             fields = [field.split('.')[-1] for field in sc.fields]
@@ -2093,12 +2093,12 @@ class FiveYearSummary(object):
     def getParameterInfo(self):
         """Define parameter definitions"""
         
-        self.heli = r'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/S_R10.R10_OFG_HELISKI_TRIP'
-        self.ice = r'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/S_R10.R10_OFG_ICEFIELD_TRIPMONTH'
-        self.guide = r'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/S_R10.R10_OFG_GUIDEDREC_DAY'
-        self.hunt = r'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/S_R10.R10_OFG_HUNTING_DAY'
-        self.mend = r'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/S_R10.R10_OFG_MENDENHALL_TRIPMONTH'
-        self.outfit = r'T:/FS/Reference/GeoTool/agency/DatabaseConnection/r10_default_as_myself.sde/S_R10.R10_OFG_OUTFITTING_ACTIVITY'
+        self.heli = r'{'ExamplePath'}/HELISKI_TRIP'
+        self.ice = r'T{'ExamplePath'}/ICEFIELD_TRIPMONTH'
+        self.guide = r'{'ExamplePath'}/GUIDEDREC_DAY'
+        self.hunt = r'{'ExamplePath'}/HUNTING_DAY'
+        self.mend = r'{'ExamplePath'}/MENDENHALL_TRIPMONTH'
+        self.outfit = r'{'ExamplePath'}OUTFITTING_ACTIVITY'
              
        
         sc = arcpy.da.SearchCursor(self.heli, "BUSINESSNAME", sql_clause=("DISTINCT", "ORDER BY BUSINESSNAME"))
@@ -2216,24 +2216,24 @@ class FiveYearSummary(object):
         username = os.environ.get("USERNAME")
         
         
-        connection = r'T:/FS/Reference/GeoTool/r10/DatabaseConnection/r10_default_as_myself.sde/'
+        connection = r'{'ExamplePath'}'
 
-        iceTrip = '{}S_R10.R10_OFG_ICEFIELD_TRIPMONTH'.format(connection) 
-        iceAct = '{}S_R10.R10_OFG_ICEFIELD_ACTIVITY'.format(connection)
-        guideDay = '{}S_R10.R10_OFG_GUIDEDREC_DAY'.format(connection)
-        guideStop = '{}S_R10.R10_OFG_GUIDEDREC_STOP'.format(connection)
-        guideActivity = '{}S_R10.R10_OFG_GUIDEDREC_ACTIVITY'.format(connection)
-        huntTrip = '{}S_R10.R10_OFG_HUNTING_TRIP'.format(connection)
-        huntHunt = '{}S_R10.R10_OFG_HUNTING_HUNTER'.format(connection)
-        huntDay = '{}S_R10.R10_OFG_HUNTING_DAY'.format(connection)
-        huntStop = '{}S_R10.R10_OFG_HUNTING_STOP'.format(connection)
-        huntActivity = '{}S_R10.R10_OFG_HUNTING_ACTIVITY'.format(connection)
-        heliTrip ='{}S_R10.R10_OFG_HELISKI_TRIP'.format(connection)
-        heliActivity = '{}S_R10.R10_OFG_HELISKI_ACTIVITY'.format(connection)
-        mendTrip = '{}S_R10.R10_OFG_MENDENHALL_TRIPMONTH'.format(connection)
-        mendActivity = '{}S_R10.R10_OFG_MENDENHALL_ACTIVITY'.format(connection)
-        outTable ='{}S_R10.R10_OFG_OUTFITTING_ACTIVITY'.format(connection)
-        locTable = '{}S_R10.R10_OFG_LOCATION'.format(connection)
+        iceTrip = '{}ICEFIELD_TRIPMONTH'.format(connection) 
+        iceAct = '{}ICEFIELD_ACTIVITY'.format(connection)
+        guideDay = '{}GUIDEDREC_DAY'.format(connection)
+        guideStop = '{}GUIDEDREC_STOP'.format(connection)
+        guideActivity = '{}GUIDEDREC_ACTIVITY'.format(connection)
+        huntTrip = '{}HUNTING_TRIP'.format(connection)
+        huntHunt = '{}HUNTING_HUNTER'.format(connection)
+        huntDay = '{}HUNTING_DAY'.format(connection)
+        huntStop = '{}HUNTING_STOP'.format(connection)
+        huntActivity = '{}HUNTING_ACTIVITY'.format(connection)
+        heliTrip ='{}HELISKI_TRIP'.format(connection)
+        heliActivity = 'HELISKI_ACTIVITY'.format(connection)
+        mendTrip = 'MENDENHALL_TRIPMONTH'.format(connection)
+        mendActivity = 'MENDENHALL_ACTIVITY'.format(connection)
+        outTable ='OUTFITTING_ACTIVITY'.format(connection)
+        locTable = 'LOCATION'.format(connection)
         
 
             
@@ -3267,18 +3267,18 @@ class RVD_Report(object):
         self.path = os.path.join(savepath, self.savefile)   
 
 
-        connection = r'T:/FS/Reference/GeoTool/r10/DatabaseConnection/r10_default_as_myself.sde/'
+        connection = r'{'ExamplePath'}'
 
-        guideDay = '{}S_R10.R10_OFG_GUIDEDREC_DAY'.format(connection)
-        guideStop = '{}S_R10.R10_OFG_GUIDEDREC_STOP'.format(connection)
-        guideActivity = '{}S_R10.R10_OFG_GUIDEDREC_ACTIVITY'.format(connection)
-        huntDay = '{}S_R10.R10_OFG_HUNTING_DAY'.format(connection)
-        huntStop = '{}S_R10.R10_OFG_HUNTING_STOP'.format(connection)
-        huntActivity = '{}S_R10.R10_OFG_HUNTING_ACTIVITY'.format(connection)
-        heliTrip ='{}S_R10.R10_OFG_HELISKI_TRIP'.format(connection)
-        heliActivity = '{}S_R10.R10_OFG_HELISKI_ACTIVITY'.format(connection)
-        outTable ='{}S_R10.R10_OFG_OUTFITTING_ACTIVITY'.format(connection)
-        locTable = '{}S_R10.R10_OFG_LOCATION'.format(connection)
+        guideDay = '{}GUIDEDREC_DAY'.format(connection)
+        guideStop = '{}GUIDEDREC_STOP'.format(connection)
+        guideActivity = '{}GUIDEDREC_ACTIVITY'.format(connection)
+        huntDay = '{}HUNTING_DAY'.format(connection)
+        huntStop = '{}HUNTING_STOP'.format(connection)
+        huntActivity = '{}HUNTING_ACTIVITY'.format(connection)
+        heliTrip ='{}HELISKI_TRIP'.format(connection)
+        heliActivity = '{}HELISKI_ACTIVITY'.format(connection)
+        outTable ='{}OUTFITTING_ACTIVITY'.format(connection)
+        locTable = '{}LOCATION'.format(connection)
 
 
           
@@ -3573,7 +3573,7 @@ class NEPAReview_Shoreline2(object):
         end = str(int(endYear))
 
 
-        template = r'T:\FS\BusOps\EnterpriseProgram\Project\R10\RegionalProjects\R10_OutfitterSurvey\Workspace\kmmiles\Reports\ShorelineIIAllocationStatus_template.xlsx'
+        template = r'T{'ExamplePath'}\Reports\ShorelineIIAllocationStatus_template.xlsx'
         wb= openpyxl.Workbook()
         wb= openpyxl.load_workbook(template)
         ws = wb['AllocStatus']
@@ -3600,16 +3600,16 @@ class NEPAReview_Shoreline2(object):
 
 
 
-        connection = r'T:/FS/Reference/GeoTool/r10/DatabaseConnection/r10_default_as_myself.sde/'
+        connection = r'{'ExamplePath'}'
         
-        guideDay = '{}S_R10.R10_OFG_GUIDEDREC_DAY'.format(connection)
-        guideStop = '{}S_R10.R10_OFG_GUIDEDREC_STOP'.format(connection)
-        guideActivity = '{}S_R10.R10_OFG_GUIDEDREC_ACTIVITY'.format(connection)
-        huntDay = '{}S_R10.R10_OFG_HUNTING_DAY'.format(connection)
-        huntStop = '{}S_R10.R10_OFG_HUNTING_STOP'.format(connection)
-        huntActivity = '{}S_R10.R10_OFG_HUNTING_ACTIVITY'.format(connection)
-        outTable ='{}S_R10.R10_OFG_OUTFITTING_ACTIVITY'.format(connection)
-        locTable = '{}S_R10.R10_OFG_LOCATION'.format(connection)
+        guideDay = '{}GUIDEDREC_DAY'.format(connection)
+        guideStop = '{}GUIDEDREC_STOP'.format(connection)
+        guideActivity = '{}GUIDEDREC_ACTIVITY'.format(connection)
+        huntDay = '{}HUNTING_DAY'.format(connection)
+        huntStop = '{}HUNTING_STOP'.format(connection)
+        huntActivity = '{}HUNTING_ACTIVITY'.format(connection)
+        outTable ='{}OUTFITTING_ACTIVITY'.format(connection)
+        locTable = '{}LOCATION'.format(connection)
 
 
         locCol = getFieldNames(locTable)
@@ -4077,7 +4077,7 @@ class NEPAReview_KMRD(object):
         end = str(int(endYear))
 
 
-        template = r'T:\FS\BusOps\EnterpriseProgram\Project\R10\RegionalProjects\R10_OutfitterSurvey\Workspace\kmmiles\Reports\KMRDAllocationStatus_template.xlsx'
+        template = r'{'ExamplePath'}\Reports\KMRDAllocationStatus_template.xlsx'
         wb= openpyxl.Workbook()
         wb= openpyxl.load_workbook(template)
         ws = wb['AllocStatus']
@@ -4086,16 +4086,16 @@ class NEPAReview_KMRD(object):
         path = os.path.join(savepath, savefile)
         wb.save(path)
 
-        connection = r'T:/FS/Reference/GeoTool/r10/DatabaseConnection/r10_default_as_myself.sde/'
+        connection = r'{'ExamplePath'}'
         
-        guideDay = '{}S_R10.R10_OFG_GUIDEDREC_DAY'.format(connection)
-        guideStop = '{}S_R10.R10_OFG_GUIDEDREC_STOP'.format(connection)
-        guideActivity = '{}S_R10.R10_OFG_GUIDEDREC_ACTIVITY'.format(connection)
-        huntDay = '{}S_R10.R10_OFG_HUNTING_DAY'.format(connection)
-        huntStop = '{}S_R10.R10_OFG_HUNTING_STOP'.format(connection)
-        huntActivity = '{}S_R10.R10_OFG_HUNTING_ACTIVITY'.format(connection)
-        outTable ='{}S_R10.R10_OFG_OUTFITTING_ACTIVITY'.format(connection)
-        locTable = '{}S_R10.R10_OFG_LOCATION'.format(connection)
+        guideDay = '{}GUIDEDREC_DAY'.format(connection)
+        guideStop = '{}GUIDEDREC_STOP'.format(connection)
+        guideActivity = '{}GUIDEDREC_ACTIVITY'.format(connection)
+        huntDay = '{}HUNTING_DAY'.format(connection)
+        huntStop = '{}HUNTING_STOP'.format(connection)
+        huntActivity = '{}HUNTING_ACTIVITY'.format(connection)
+        outTable ='{}OUTFITTING_ACTIVITY'.format(connection)
+        locTable = '{}LOCATION'.format(connection)
 
 
         def getFieldNames(shp):
@@ -4418,20 +4418,20 @@ class ConfirmActualUse(object):
                 return fieldnames 
  
                 
-        connection = r'T:/FS/Reference/GeoTool/r10/DatabaseConnection/r10_default_as_myself.sde/'
+        connection = r'{'ExamplePath'}'
 
             
-        iceTable = '{}S_R10.R10_OFG_ICEFIELD_TRIPMONTH'.format(connection) 
+        iceTable = '{}ICEFIELD_TRIPMONTH'.format(connection) 
 
-        guideTable = '{}S_R10.R10_OFG_GUIDEDREC_TRIP'.format(connection)
+        guideTable = '{}GUIDEDREC_TRIP'.format(connection)
  
-        huntTable = '{}S_R10.R10_OFG_HUNTING_TRIP'.format(connection)
+        huntTable = '{}HUNTING_TRIP'.format(connection)
         
-        heliTable ='{}S_R10.R10_OFG_HELISKI_TRIP'.format(connection)
+        heliTable ='{}HELISKI_TRIP'.format(connection)
 
-        mendTable = '{}S_R10.R10_OFG_MENDENHALL_TRIPMONTH'.format(connection)
+        mendTable = '{}MENDENHALL_TRIPMONTH'.format(connection)
 
-        outfitTable ='{}S_R10.R10_OFG_OUTFITTING_ACTIVITY'.format(connection)
+        outfitTable ='{}OUTFITTING_ACTIVITY'.format(connection)
 
 
 
@@ -4756,19 +4756,19 @@ class WildernessSummary(object):
 #        outcheck = os.path.join(savepath, "Visitation_OutputCheck.txt")
 #        f1 = open(outcheck, 'w')         
         
-        connection = r'T:/FS/Reference/GeoTool/r10/DatabaseConnection/r10_default_as_myself.sde/'
+        connection = r'{'ExamplePath'}'
 
-        guideTrip = '{}S_R10.R10_OFG_GUIDEDREC_TRIP'.format(connection)
-        guideDay = '{}S_R10.R10_OFG_GUIDEDREC_DAY'.format(connection)
-        guideStop = '{}S_R10.R10_OFG_GUIDEDREC_STOP'.format(connection)
-        guideActivity = '{}S_R10.R10_OFG_GUIDEDREC_ACTIVITY'.format(connection)
-        huntTrip = '{}S_R10.R10_OFG_HUNTING_TRIP'.format(connection)
-        huntHunt = '{}S_R10.R10_OFG_HUNTING_HUNTER'.format(connection)
-        huntDay = '{}S_R10.R10_OFG_HUNTING_DAY'.format(connection)
-        huntStop = '{}S_R10.R10_OFG_HUNTING_STOP'.format(connection)
-        huntActivity = '{}S_R10.R10_OFG_HUNTING_ACTIVITY'.format(connection)
-        outTable ='{}S_R10.R10_OFG_OUTFITTING_ACTIVITY'.format(connection)
-        locTable = '{}S_R10.R10_OFG_LOCATION'.format(connection)
+        guideTrip = '{}GUIDEDREC_TRIP'.format(connection)
+        guideDay = '{}GUIDEDREC_DAY'.format(connection)
+        guideStop = '{}GUIDEDREC_STOP'.format(connection)
+        guideActivity = '{}GUIDEDREC_ACTIVITY'.format(connection)
+        huntTrip = '{}HUNTING_TRIP'.format(connection)
+        huntHunt = '{}HUNTING_HUNTER'.format(connection)
+        huntDay = '{}HUNTING_DAY'.format(connection)
+        huntStop = '{}HUNTING_STOP'.format(connection)
+        huntActivity = '{}HUNTING_ACTIVITY'.format(connection)
+        outTable ='{}OUTFITTING_ACTIVITY'.format(connection)
+        locTable = '{}LOCATION'.format(connection)
         
 
             
@@ -4999,7 +4999,7 @@ class WildernessSummary(object):
             ws.oddHeader.left.font = "Calibri, bold"
             ws.oddHeader.left.color = "000000"
             
-            footer = 'Report Generated: {}\nSource: R10 Outfitter/Guide Database'.format(datetime.today().strftime('%m/%d/%Y'))
+            footer = 'Report Generated: {}\nSource: Outfitter/Guide Database'.format(datetime.today().strftime('%m/%d/%Y'))
             ws.oddFooter.left.text = footer
             
         def excelRow(ws, rows, styles):
@@ -5175,7 +5175,8 @@ class HeliskiSummary(object):
     def updateMessages(self, parameters):
         """Modify the messages created by internal validation for each tool
         parameter.  This method is called after internal validation."""
-        return
+        
+		return
 
     def execute(self, parameters, messages):
         
@@ -5206,11 +5207,11 @@ class HeliskiSummary(object):
         username = os.environ.get("USERNAME")
        
         
-        connection = r'T:/FS/Reference/GeoTool/r10/DatabaseConnection/r10_default_as_myself.sde/'
+        connection = r'{'ExamplePath'}'
 
-        heliTrip ='{}S_R10.R10_OFG_HELISKI_TRIP'.format(connection)
-        heliActivity = '{}S_R10.R10_OFG_HELISKI_ACTIVITY'.format(connection)
-        locTable = '{}S_R10.R10_OFG_LOCATION'.format(connection)
+        heliTrip ='{}HELISKI_TRIP'.format(connection)
+        heliActivity = '{}HELISKI_ACTIVITY'.format(connection)
+        locTable = '{}LOCATION'.format(connection)
         
 
             
@@ -5541,25 +5542,25 @@ class VisitationSummary(object):
 #        outcheck = os.path.join(savepath, "Visitation_OutputCheck.txt")
 #        f1 = open(outcheck, 'w')         
         
-        connection = r'T:/FS/Reference/GeoTool/r10/DatabaseConnection/r10_default_as_myself.sde/'
+        connection = r'{'ExamplePath'}'
 
-        iceTrip = '{}S_R10.R10_OFG_ICEFIELD_TRIPMONTH'.format(connection) 
-        iceAct = '{}S_R10.R10_OFG_ICEFIELD_ACTIVITY'.format(connection)
-        guideTrip = '{}S_R10.R10_OFG_GUIDEDREC_TRIP'.format(connection)
-        guideDay = '{}S_R10.R10_OFG_GUIDEDREC_DAY'.format(connection)
-        guideStop = '{}S_R10.R10_OFG_GUIDEDREC_STOP'.format(connection)
-        guideActivity = '{}S_R10.R10_OFG_GUIDEDREC_ACTIVITY'.format(connection)
-        huntTrip = '{}S_R10.R10_OFG_HUNTING_TRIP'.format(connection)
-        huntHunt = '{}S_R10.R10_OFG_HUNTING_HUNTER'.format(connection)
-        huntDay = '{}S_R10.R10_OFG_HUNTING_DAY'.format(connection)
-        huntStop = '{}S_R10.R10_OFG_HUNTING_STOP'.format(connection)
-        huntActivity = '{}S_R10.R10_OFG_HUNTING_ACTIVITY'.format(connection)
-        heliTrip ='{}S_R10.R10_OFG_HELISKI_TRIP'.format(connection)
-        heliActivity = '{}S_R10.R10_OFG_HELISKI_ACTIVITY'.format(connection)
-        mendTrip = '{}S_R10.R10_OFG_MENDENHALL_TRIPMONTH'.format(connection)
-        mendActivity = '{}S_R10.R10_OFG_MENDENHALL_ACTIVITY'.format(connection)
-        outTable ='{}S_R10.R10_OFG_OUTFITTING_ACTIVITY'.format(connection)
-        locTable = '{}S_R10.R10_OFG_LOCATION'.format(connection)
+        iceTrip = '{}ICEFIELD_TRIPMONTH'.format(connection) 
+        iceAct = '{}ICEFIELD_ACTIVITY'.format(connection)
+        guideTrip = '{}GUIDEDREC_TRIP'.format(connection)
+        guideDay = '{}GUIDEDREC_DAY'.format(connection)
+        guideStop = '{}GUIDEDREC_STOP'.format(connection)
+        guideActivity = '{}GUIDEDREC_ACTIVITY'.format(connection)
+        huntTrip = '{}HUNTING_TRIP'.format(connection)
+        huntHunt = '{}HUNTING_HUNTER'.format(connection)
+        huntDay = '{}HUNTING_DAY'.format(connection)
+        huntStop = '{}HUNTING_STOP'.format(connection)
+        huntActivity = '{}HUNTING_ACTIVITY'.format(connection)
+        heliTrip ='{}HELISKI_TRIP'.format(connection)
+        heliActivity = '{}HELISKI_ACTIVITY'.format(connection)
+        mendTrip = '{}MENDENHALL_TRIPMONTH'.format(connection)
+        mendActivity = '{}MENDENHALL_ACTIVITY'.format(connection)
+        outTable ='{}OUTFITTING_ACTIVITY'.format(connection)
+        locTable = '{}LOCATION'.format(connection)
         
 
             
@@ -5907,7 +5908,7 @@ class VisitationSummary(object):
             ws.oddHeader.left.font = "Calibri, bold"
             ws.oddHeader.left.color = "000000"
             
-            footer = 'Report Generated: {}\nSource: R10 Outfitter/Guide Database'.format(datetime.today().strftime('%m/%d/%Y'))
+            footer = 'Report Generated: {}\nSource: Outfitter/Guide Database'.format(datetime.today().strftime('%m/%d/%Y'))
             ws.oddFooter.left.text = footer
             
         def excelRow(ws, rows, styles):
@@ -5992,3 +5993,4 @@ class VisitationSummary(object):
             wsAct.evenFooter.center.text = "Page &P of &N"
             
         return      
+
