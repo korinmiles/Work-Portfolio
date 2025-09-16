@@ -98,24 +98,24 @@ write_roads = arcpy.GetParameterAsText(7)
 
 
 config_dict = {
-        "Region01" : {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region01_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region02" : {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region02_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region03" : {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region03_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region04" : {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region04_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region05" : {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region05_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region06": {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region06_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region08": {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region08_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region09": {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region09_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region10": {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region10_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
+        "Region01" : {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region01_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region02" : {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region02_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region03" : {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region03_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region04" : {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region04_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region05" : {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region05_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region06": {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region06_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region08": {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region08_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region09": {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region09_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region10": {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region10_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
         }
 
 
@@ -139,7 +139,7 @@ arcpy.env.outputCoordinateSystem = sr
 #----------------- global variables not in the config -------------------------
 
 # project area boundary symbology
-pabSym = r"T:\FS\Reference\GeoTool\r06_csa4\Style\NEPA_SOP\Project Boundary.lyr"
+pabSym = r"{'ExamplePath'}\NEPA_SOP\Project Boundary.lyr"
 pab_symbology = pabSym
 
 # acres/miles calculations
@@ -147,36 +147,36 @@ acExpress = """!Shape.area@acres!"""
 miExpress = """!Shape.length@miles!"""
 
 
-if region == "Region01" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R01.Hydrography\S_R01.NHDFlowline";
-elif region == "Region02" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R02.Hydrography\S_R02.NHDFlowline";   
-elif region == "Region03" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R03.Hydrography\S_R03.NHDFlowline";
-elif region == "Region04" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R04.Hydrography\S_R04.NHDFlowline";
-elif region == "Region05" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R05.Hydrography\S_R05.NHDFlowline";
-elif region == "Region06" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R06.HydrographyPrj\S_R06.NHDFlowlinePrj";
-elif region == "Region08" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_NHD.Hydro_08_NHD\S_NHD.Hydro_08_NHD_Flowline";
-elif region == "Region09" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R09.Hydrography\S_R09.NHDFlowline";
-elif region == "Region10" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R10.Hydrography\S_R10.NHDFlowline"
+if region == "Region01" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R01.Hydrography\S_R01.NHDFlowline";
+elif region == "Region02" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R02.Hydrography\S_R02.NHDFlowline";   
+elif region == "Region03" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R03.Hydrography\S_R03.NHDFlowline";
+elif region == "Region04" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R04.Hydrography\S_R04.NHDFlowline";
+elif region == "Region05" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R05.Hydrography\S_R05.NHDFlowline";
+elif region == "Region06" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R06.HydrographyPrj\S_R06.NHDFlowlinePrj";
+elif region == "Region08" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_NHD.Hydro_08_NHD\S_NHD.Hydro_08_NHD_Flowline";
+elif region == "Region09" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R09.Hydrography\S_R09.NHDFlowline";
+elif region == "Region10" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R10.Hydrography\S_R10.NHDFlowline"
 
 
 
 
 # NHD flow lines for clipping to subwatershed after it's created
 ##nhdFlow = r"T:\FS\Reference\GeoTool\r06\DatabaseConnection\edw_sde_default_as_myself.sde\S_R06.HydrographyPrj\S_R06.NHDFlowlinePrj"
-perennSym = r"T:\FS\Reference\GeoTool\r06_csa4\Style\NEPA_SOP\Streams.lyr"
+perennSym = r"{'ExamplePath'}\NEPA_SOP\Streams.lyr"
 
 # roads data
-rdConv = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Converted"
-rdDecom = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Decommissioned"
-rdExist = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Existing"
-rdPlan = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Planned"
-roads = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.Road"
+rdConv = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Converted"
+rdDecom = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Decommissioned"
+rdExist = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Existing"
+rdPlan = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Planned"
+roads = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.Road"
 
 # road symbology
-roadSym = r"T:\FS\Reference\GeoTool\r06_csa4\Style\NEPA_SOP\Roads.lyr"
+roadSym = r"{'ExamplePath'}\NEPA_SOP\Roads.lyr"
 
 # veg data
-veg = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.NRIS_Veg\S_USA.NRIS_VegPoly"
-vegTbl = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.NRIS_VegCharacterizations"
+veg = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.NRIS_Veg\S_USA.NRIS_VegPoly"
+vegTbl = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.NRIS_VegCharacterizations"
 
 
 #-----------------------------Functions----------------------------------------
@@ -650,166 +650,6 @@ def add_general_lyr(lyr_file_path, project_folder):
     return output
 
 
-#def summary_table(gdb_path, project_folder, feature_dataset, featureClass, index, values, column, out_csv):
-#    """
-#    create summary table of dataset
-#    index  - column to group by on the pivot table index
-#    values - values to aggregate (sum)
-#    column - column to group by on the pivot table column
-#    """
-#    fc = os.path.join(gdb_path, feature_dataset, featureClass)
-#    output = os.path.join(project_folder, "GIS", "AnalysisProduct", out_csv)
-#
-#    if not arcpy.Exists(fc):
-#        arcpy.AddMessage("{} not found".format(featureClass))
-#        return None
-#
-#    # featureClassToNumPyArray is throwing error if numeric fields are null
-#    # all we really need are the specified columns
-#    field_list = [fld.name for fld in arcpy.ListFields(fc) if fld.name != arcpy.Describe(fc).shapeFieldName]
-#
-#    if column == '' or column == None:
-#        field_list = [index, values]
-#    else:
-#        field_list = [index, values, column]
-#
-#    dataframe = pandas.DataFrame(arcpy.da.FeatureClassToNumPyArray(fc, field_list))
-#    fcPivot = pandas.pivot_table(dataframe, values=values, index=index,
-#                             columns=column, aggfunc=numpy.sum,
-#                             margins=True, margins_name='Totals')
-#    fcPivot.to_csv(output)
-##    writer=ExcelWriter(output)
-##    fcPivot.to_excel(writer, sheetName)
-##    writer.save()
-#
-#    return output
-#
-## if we add the summary table info to the config, process it again
-#def process_summary_tables(config_file, fullpath, folder_loc):
-#    """
-#    Need to add the summary fields to the config
-#    summary_index
-#    summary_values
-#    summary_column
-#    """
-#    with open(config_file) as csvfile:
-#        reader = csv.DictReader(csvfile)
-#
-#        for row in reader:
-#            try:
-#                if row['summary_values']:
-#                    feature_dataset = row['feature_dataset']
-#                    feature_class = row['clip_output']
-#                    out_csv = "{}.csv".format(feature_class)
-#
-#                    index = row['summary_index']
-#                    values = row['summary_values']
-#                    column = row['summary_column']
-#                    sheetname = row['sheetname']
-#                    if row['summary_column'] == '':
-#                        column = None
-#                    else:
-#                        column = row['summary_column']
-#
-#                    arcpy.AddMessage("creating summary table for {}".format(feature_class))
-#                    summary_table(fullpath, folder_loc, feature_dataset, feature_class,
-#                                  index, values, column, out_csv)
-#
-#            except:
-#                arcpy.AddWarning("--- Unable to create summary table")
-#                arcpy.AddWarning("error: {}".format(sys.exc_info()[0]))
-#
-#    return
-#
-## test excel writing, need to use a writer and write all the sheets at once
-## to_excel function is not currently working
-#    
-#def tbl(fc, values, index, out, sheetName):
-#     pdDF= pd.DataFrame(arcpy.da.FeatureClassToNumPyArray(fc, [fld.name for fld in arcpy.ListFields(fc) if fld.name != arcpy.Describe(fc).shapeFieldName]))
-#     fcPivot= pd.pivot_table(pdDF, values= values, index= index, aggfunc=numpy.sum, margins=True, margins_name='Totals')
-#     writer=ExcelWriter(out)
-#     fcPivot.to_excel(writer, sheetName)
-#     writer.save()
-#    
-#
-#def summary_table_xls(gdb_path, feature_dataset, featureClass, index, values, column, sheetname):
-#    """
-#    create summary table of dataset as dataframe
-#    index  - column to group by on the pivot table index
-#    values - values to aggregate (sum)
-#    column - column to group by on the pivot table column
-#
-#    returns the pivot table dataframe
-#    """
-#    fc = os.path.join(gdb_path, feature_dataset, featureClass)
-#    output = os.path.join(project_folder, "GIS", "AnalysisProduct", out_xls)
-#
-#    if not arcpy.Exists(fc):
-#        arcpy.AddMessage("{} not found".format(featureClass))
-#        return None
-#
-#    # featureClassToNumPyArray is throwing error if long fields are null
-#    # all we really need are the specified columns
-#    field_list = [fld.name for fld in arcpy.ListFields(fc) if fld.name != arcpy.Describe(fc).shapeFieldName]
-#
-#    if column == '' or column == None:
-#        field_list = [index, values]
-#    else:
-#        field_list = [index, values, column]
-#
-#    dataframe = pandas.DataFrame(arcpy.da.FeatureClassToNumPyArray(fc, field_list))
-#    fcPivot = pandas.pivot_table(dataframe, values=values, index=index,
-#                             columns=column, aggfunc=numpy.sum,
-#                             margins=True, margins_name='Totals')
-##    fcPivot.to_csv(output)
-#    writer=ExcelWriter(output)
-#    fcPivot.to_excel(writer, sheetName)
-#    writer.save()
-#
-#    return fcPivot
-#
-#
-#def process_summary_tables_xls(config_file, fullpath, writer):
-#    """
-#    Create summary and add to excel
-#    writer is pandas.ExcelWriter using .xls file for now
-#
-#    summary_index
-#    summary_values
-#    summary_column
-#    """
-#    with open(config_file) as csvfile:
-#        reader = csv.DictReader(csvfile)
-#
-#        for row in reader:
-#            try:
-#                if row['summary_values']:
-#                    feature_dataset = row['feature_dataset']
-#                    feature_class = row['clip_output']
-#                    out_xls = "{}.xlsx".format(feature_class)
-#
-#                    index = row['summary_index']
-#                    values = row['summary_values']
-#                    if row['summary_column'] == '':
-#                        column = None
-#                    else:
-#                        column = row['summary_column']
-#
-#                    arcpy.AddMessage("creating summary for {}".format(feature_class))
-#                    summary_table(fullpath, folder_loc, feature_dataset, feature_class,
-#                                  index, values, column, out_xls)
-#
-#                    pivot_df = summary_table_xls(fullpath, feature_dataset,
-#                                                 feature_class, index, values, column)
-#
-#                    pivot_df.to_excel(writer, sheet_name=feature_class)
-#
-#            except:
-#                arcpy.AddWarning("--- Unable to create summary table")
-#                arcpy.AddWarning("error: {}".format(sys.exc_info()[0]))
-#
-#    return
-
 def create_layer_file(feature_class, symbology, output_lyr_file, mxd):
     """    
     feature_class - full path to the feature class
@@ -919,15 +759,6 @@ def process_summary_tables_xls(config_file, out_xls):
                     
                     tbl_out = os.path.join(project_folder, "GIS", "AnyalysisProduct", "Archive", "{}.xls".format(sheet))
                     tbl = arcpy.TableToExcel_conversion(fc, tbl_out)
-#                    df= pandas.read_excel(tbl_out)
-#                    df.to_excel(outxls, sheetname= "{}".format(feature_class))
-    
-#                    fcPivot = pandas.pivot_table(df, values=values, index=index,
-#                             columns=column, aggfunc=numpy.sum,
-#                             margins=True, margins_name='Totals')
-#     
-#     
-#                    fcPivot.to_excel(outxls, sheetname= "{}_Pivot".format(feature_class))
 
 
             except:
@@ -986,18 +817,6 @@ if project_area_bound == "":
 mxd = arcpy.mapping.MapDocument("CURRENT")
 df = arcpy.mapping.ListDataFrames(mxd)[0]
 
-##Buffer PAB
-#pabBuff = arcpy.Buffer_analysis(project_area_bound, os.path.join(fullpath, "Transportation", "BufferPAB"), "1 Miles", "OUTSIDE_ONLY", "ROUND", "ALL")
-#pabUnion = arcpy.Union_analysis([project_area_bound, pabBuff], os.path.join(fullpath,"Transportation", "RoadClipBuffer"), "ALL", "", "NO_GAPS")
-#arcpy.AddField_management(pabUnion, "IN_AND_OUT", "TEXT")
-#expression = "calc( !FID_BufferPAB!)"
-#codeBlock = """def calc(val):
-#    if val == -1:
-#        return 'IN'
-#    if val >= 1:
-#        return 'OUT'"""
-#arcpy.CalculateField_management(pabUnion, "IN_AND_OUT", expression, "PYTHON", codeBlock)
-#arcpy.DeleteFeatures_management(os.path.join(fullpath, "BufferPAB"))
 
 
 #------------- Copy PAB to the project gdb and buffer PAB-----------------
@@ -1302,6 +1121,7 @@ try:
 except:
     arcpy.AddWarning("--- Unable to create summary table")
     arcpy.AddWarning("error: {}".format(sys.exc_info()[0]))
+
 
 
 
