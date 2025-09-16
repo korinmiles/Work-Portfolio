@@ -1,0 +1,151 @@
+import fme
+import fmeobjects
+
+
+class FeatureProcessor(object):
+    """Template Class Interface:
+    When using this class, make sure its name is set as the value of the 'Class
+    to Process Features' transformer parameter.
+    """
+
+    def __init__(self):
+        """Base constructor for class members."""
+        pass
+
+    def input(self, feature):
+        """This method is called for each FME Feature entering the 
+        PythonCaller. If knowledge of all input Features is not required for 
+        processing, then the processed Feature can be emitted from this method 
+        through self.pyoutput(). Otherwise, the input FME Feature should be 
+        cached to a list class member and processed in process_group() when 
+        'Group by' attributes(s) are specified, or the close() method.
+
+        :param fmeobjects.FMEFeature feature: FME Feature entering the 
+            transformer.
+        """
+        actCodes = [1102,1111,1112,1113,1117,1119,1120,1130,1136,1139,1150,1152,1153,1154,
+                    1160,1180,2000,2341,2360,2370,2510,2530,2540,2560,3132,3340,3370,3380,4101,
+                    4102,4111,4113,4115,4117,4121,4122,4131,4132,4141,4142,4143,4145,4146,4148,4151,
+                    4152,4162,4175,4177,4183,4192,4193,4194,4196,4210,4211,4220,4231,4232,4241,4242,
+                    4270,4455,4471,4472,4473,4474,4475,4481,4482,4483,4484,4485,4491,4492,4493,4494,
+                    4495,4511,4521,4530,4540,4541,6101,6103,6104,6105,6106,6107,6133,6584,6684,7015,
+                    7050,7065,7067,9008,9400,4110,4112,4114,4116,4120,4123,4133,4134,4140,4144,4147,
+                    4150,4154,4160,4176,4186,4195,4200,4233,4230,4240,4470,4480,4490,4512,4522,4542,4580]
+                    
+        bioCodes  = [1120,2530,3132,4101,4102,4110,4111,4112,4113,4114,4115,4116,4117,4120,
+                     4121,4122,4123,4131,4132,4133,4134,4140,4141,4142,4143,4144,4145,4146,4147,
+                     4148,4150,4151,4152,4154,4162,4175,4176,4177,4183,4186,4192,4193,4194,4195,
+                     4196,4210,4211,4230,4233,4241,4242,4540,6104,7065]
+                     
+        broadCodes = [1111,1113,2540,3340,4471,4481,4491,4541,6101,7015,7050]
+        
+        chemCodes = [2510,4472,4482,4492,4542,6106,7067,9400]
+        
+        chipCodes = [1154]
+        
+        crushCodes = [1152]
+        
+        fireCodes = [1117,1119]
+        
+        grazeCodes = [1139,2000,2341,2360,2560]
+        
+        jackpotCodes = [1112]
+        
+        lopCodes = [1150,4455,4475,4485,4495]
+        
+        machineCodes = [1153,2370,3380,4270,4470,4474,4484,4494,6107,6133]
+        
+        pileBurnCodes = [1102,1130]
+        
+        mowCodes = [4580,9008]
+        
+        thinningCodes = [1136,1160,1180,3370,4160,4200,4220,4231,4232,4240,4473,4480,4483,
+                         4493,4511,4512,4521,4522,4530,6103,6105,6584,6684]
+        
+        siteCodes = [4490]
+
+        actAtt = int(feature.getAttribute('ACTIVITY_CODE'))
+
+        if actAtt in bioCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Mechanical')
+            feature.setAttribute('Activity_Type', 'Biomass Removal')
+        elif actAtt in broadCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Fire')
+            feature.setAttribute('Activity_Type', 'Broadcast Burn')
+        elif actAtt in chemCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Other')
+            feature.setAttribute('Activity_Type', 'Chemical')
+        elif actAtt in chipCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Mechanical')
+            feature.setAttribute('Activity_Type', 'Chipping') 
+        elif actAtt in crushCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Mechanical')
+            feature.setAttribute('Activity_Type', 'Crushing') 
+        elif actAtt in fireCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Fire')
+            feature.setAttribute('Activity_Type', 'Fire Use') 
+        elif actAtt in grazeCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Other')
+            feature.setAttribute('Activity_Type', 'Grazing')  
+        elif actAtt in jackpotCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Fire')
+            feature.setAttribute('Activity_Type', 'Jackpot Burn')
+        elif actAtt in lopCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Mechanical')
+            feature.setAttribute('Activity_Type', 'Lop and Scatter')
+        elif actAtt in machineCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Mechanical')
+            feature.setAttribute('Activity_Type', 'Machine Pile') 
+        elif actAtt in pileBurnCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Fire')
+            feature.setAttribute('Activity_Type', 'Machine Pile Burn')  
+        elif actAtt in mowCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Mechanical')
+            feature.setAttribute('Activity_Type', 'Mastication/Mowing')  
+        elif actAtt in thinningCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Mechanical')
+            feature.setAttribute('Activity_Type', 'Thinning') 
+        elif actAtt in siteCodes:
+            feature.setAttribute('HazardousFuelTreatment', 'Yes')
+            feature.setAttribute('ActivityCategory', 'Other')
+            feature.setAttribute('Activity_Type', 'Other')             
+        else:
+            feature.setAttribute('HazardousFuelTreatment', 'No')
+
+        self.pyoutput(feature)
+
+    def close(self):
+        """This method is called once all the FME Features have been processed
+        from input().
+        """
+        pass
+
+    def process_group(self):
+        """When 'Group By' attribute(s) are specified, this method is called 
+        once all the FME Features in a current group have been sent to input().
+
+        FME Features sent to input() should generally be cached for group-by 
+        processing in this method when knowledge of all Features is required. 
+        The resulting Feature(s) from the group-by processing should be emitted 
+        through self.pyoutput().
+
+        FME will continue calling input() a number of times followed
+        by process_group() for each 'Group By' attribute, so this 
+        implementation should reset any class members for the next group.
+        """
+        pass
+
+

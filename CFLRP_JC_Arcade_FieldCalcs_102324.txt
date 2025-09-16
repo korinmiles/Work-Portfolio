@@ -1,0 +1,106 @@
+var cflr = $feature.CFLR
+var jc = $feature.JointChief
+
+if (cflr == "True" && jc =="True") {
+    return "Both"
+}
+else if (cflr == "True" && jc =="False") {
+    return "CFLRP"
+}
+else if (cflr == "False" && jc =="True") {
+    return "Joint Chiefs"
+}
+else {
+    return "Not a CFLRP or Joint Chief"
+}
+
+
+
+var imp = [$feature.IMPL_PROJECT_TYPE];
+var type = "";
+
+type = IIf(Find("CFLRP", imp)>-1, "True", "False");
+
+return type
+
+var act= ["CFLR024", "CFLR029", "CFLR027", "CFLR028", "CFLR029", "CFLR025", "CFLR027", "CFLR030", "CFLR026", "CFLR031"];
+var type = "";
+var imp = [$feature.IMPL_PROJECT_NBR];
+var lst = []
+
+for (var a in act) {
+    IF(Find(a, imp)>-1) {
+      type = "Active";
+      }
+    else {
+        type = "Inactive";
+      }
+}
+
+var act= ["CFLR024", "CFLR029", "CFLR027", "CFLR028", "CFLR029", "CFLR025", "CFLR027", "CFLR030", "CFLR026", "CFLR031"];
+var type = "";
+var imp = [$feature.IMPL_PROJECT_NBR];
+var lst = []
+
+for (var a in act) {
+    type = IIf(indexOf(imp, a)>-1, "Active", "Inactive"); 
+}
+
+return type
+
+
+          
+var act= ["CFLR024", "CFLR029", "CFLR027", "CFLR028", "CFLR029", "CFLR025", "CFLR027", "CFLR030", "CFLR026", "CFLR031"];
+var status = "";
+var imp = Split($feature.IMPL_PROJECT_NBR, ",", -1, true);
+var lst = [];
+var lst1 = [];
+
+
+for(var m in imp){
+    var numb = Count(imp[m]);
+    status = IIf((numb>0), (Push(lst, imp[m])), "");
+}
+
+for (var a in act) {
+   var status1 = IIf(Includes(lst, act[a]), "Active", "Inactive"); 
+   Push(lst1, status1)
+}
+
+var active1 = IIf(Includes(lst1, "Active"), "Active", "Inactive")
+
+return Text(active1)
+
+
+          
+var act= ["FSNRCS-111", "FSNRCS-113", "FSNRCS-113", "FSNRCS-126", "FSNRCS-131", "FSNRCS-107", "FSNRCS-97", "FSNRCS-104", "FSNRCS-125", "FSNRCS-123", "FSNRCS-128", "FSNRCS-127", "FSNRCS-106", "FSNRCS-96", "FSNRCS-129", "FSNRCS-115", "FSNRCS-132", "FSNRCS-114", "FSNRCS-98", "FSNRCS-112", "FSNRCS-133", "FSNRCS-109", "FSNRCS-116", "FSNRCS-134", "FSNRCS-130", "FSNRCS-120", "FSNRCS-110", "FSNRCS-135", "FSNRCS-119", "FSNRCS-103", "FSNRCS-99", "FSNRCS-113", "FSNRCS-113", "FSNRCS-105", "FSNRCS-121", "FSNRCS-100"];
+var status = "";
+var imp = Split($feature.IMPL_PROJECT_NBR, ",", -1, true);
+var lst = [];
+var lst1 = [];
+
+
+for(var m in imp){
+    var numb = Count(imp[m]);
+    status = IIf((numb>0), (Push(lst, imp[m])), "");
+}
+
+for (var a in act) {
+   var status1 = IIf(Includes(lst, act[a]), "Active", "Inactive"); 
+   Push(lst1, status1)
+}
+
+var active1 = IIf(Includes(lst1, "Active"), "Active", "Inactive")
+
+return Text(active1)
+
+
+
+
+   
+
+
+
+   
+
+return type

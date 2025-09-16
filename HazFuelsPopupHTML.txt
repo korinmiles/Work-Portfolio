@@ -1,0 +1,62 @@
+<p style="text-align:center;">
+    <span style="color:#204346;"><strong>{NAME}&nbsp;</strong></span>
+</p>
+<figure>
+    <figure class="table" style="width:100%;">
+        <table style="border-collapse:collapse;text-align:left;">
+            <tbody>
+                <tr>
+                    <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">Activity Description</span>
+                    </th>
+                    <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">{ACTIVITY}&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">Activity Type</span>
+                    </th>
+                    <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">{Activity_Type} &nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">Funding Source</span>
+                    </th>
+                    <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">{Funding_Source}&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">Fiscal Year Accomplished</span>
+                    </th>
+                    <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">{FISCAL_YEAR_AWARDED}&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">Landscape Name</span>
+                    </th>
+                    <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">{LandscapeName}&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">Acres Accomplished</span>
+                    </th>
+                    <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">{expression/expr0}&nbsp;</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </figure>
+</figure>
+<p>
+    &nbsp;
+</p>

@@ -1,0 +1,20 @@
+Arcade Script to Calculate which activities are commercial, pre-commercial, or rx burn
+
+var comm = ['4101','4102','4111','4115','4113','4117','4122','4132','4142','4146','4121','4131','4141','4145','4148','4143','4162','4175','4177','4183','4192','4193','4194','4196','4151','4152','4210','4211','4220','4231','4232','4241','4242','4250','4270','4280','4290','4291','4570'];
+var precomm = ['4511', '4521'];
+var rx = ['1102','1111','1112','1113','1119','1130','2540','3340','4471','4481','4491','4541','6101','7015','7050'];
+
+var field = ($feature.ACTIVITY_CODE)
+
+if (indexOf(comm, field) != -1){
+   return "Commercial Thin";
+}
+else if (indexOf(precomm, field)!= -1){
+    return "Pre-Commercial";
+}
+else if (indexOf(rx, field)!= -1){
+    return "RX Fire";
+}
+else {
+    return "All Other Activities ";
+}

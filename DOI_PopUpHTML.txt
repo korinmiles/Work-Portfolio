@@ -1,0 +1,43 @@
+<figure>
+    <figure class="table" style="width:100%;">
+        <table style="border-collapse:collapse;text-align:left;">
+            <tbody>
+                <tr>
+                    <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">Bureau Name</span>
+                    </th>
+                    <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">{BureauName}&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">State</span>
+                    </th>
+                    <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">{UnitStateN}&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">Unit Name</span>
+                    </th>
+                    <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">{UnitName}&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">Project Name</span>
+                    </th>
+                    <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                        <span style="color:#204346;">{ProjectNam}&nbsp;</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </figure>
+</figure>
+<p>
+    &nbsp;
+</p>

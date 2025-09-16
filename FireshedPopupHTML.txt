@@ -1,0 +1,29 @@
+<figure>
+    <figure>
+        <figure class="table" style="width:100%;">
+            <table style="border-collapse:collapse;text-align:left;">
+                <tbody>
+                    <tr>
+                        <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                            <span style="color:#204346;">Fireshed Name</span>
+                        </th>
+                        <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                            <span style="color:#204346;">{S_USA.Fire_FireshedReg_Fireshed.FIRESHED_NAME} &nbsp;</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="background-color:#E1E1E1;border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                            <span style="color:#204346;">Exposure Total</span>
+                        </th>
+                        <td style="border:0.5px solid rgb(32, 67, 70);padding:8px;">
+                            <span style="color:#204346;">{S_USA.Fire_FireshedReg_Fireshed_Exp.EXP_TOTAL} &nbsp;</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </figure>
+    </figure>
+</figure>
+<p>
+    &nbsp;
+</p>
