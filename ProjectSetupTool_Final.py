@@ -92,24 +92,24 @@ write_roads = arcpy.GetParameterAsText(7)
 
 
 config_dict = {
-        "Region01" : {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region01_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region02" : {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region02_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region03" : {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region03_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region04" : {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region04_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region05" : {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region05_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region06": {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region06_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region08": {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region08_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region09": {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region09_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
-        "Region10": {"config" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\config\Region10_edw_nepa_sop_config.csv",
-                  "general" : r"T:\FS\BusOps\EnterpriseProgram\Program\Workspace\kmmiles\NEPA_SOP\general_layer_files"},
+        "Region01" : {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region01_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region02" : {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region02_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region03" : {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region03_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region04" : {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region04_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region05" : {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region05_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region06": {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region06_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region08": {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region08_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region09": {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region09_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
+        "Region10": {"config" : r"{'ExamplePath'}\NEPA_SOP\config\Region10_edw_nepa_sop_config.csv",
+                  "general" : r"{'ExamplePath'}\NEPA_SOP\general_layer_files"},
         }
 
 
@@ -1029,6 +1029,7 @@ update_datasets(dataset_list, metadata_update_dict, abstract_dict)
 #---------------- Create basemap for the project -------------------
 baseMap = mxd.saveACopy(os.path.join(folder_loc, "GIS", "MXD", "BaseMap.mxd"))
 arcpy.AddMessage("Base map saved successfully")
+
 
 
 
