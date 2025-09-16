@@ -31,14 +31,14 @@ project_area_bound = arcpy.GetParameterAsText(1)   #project area boundary featur
 
 
 # roads data
-rdConv = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Converted"
-rdDecom = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Decommissioned"
-rdExist = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Existing"
-rdPlan = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Planned"
-roads = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.Road"
+rdConv = r"{'ExamplePath'}\S_USA.Transportation\S_USA.RoadCore_Converted"
+rdDecom = r"{'ExamplePath'}\S_USA.Transportation\S_USA.RoadCore_Decommissioned"
+rdExist = r"{'ExamplePath'}\S_USA.Transportation\S_USA.RoadCore_Existing"
+rdPlan = r"{'ExamplePath'}\S_USA.Transportation\S_USA.RoadCore_Planned"
+roads = r"{'ExamplePath'}\S_USA.Transportation\S_USA.Road"
 
 # road symbology
-roadSym = r"T:\FS\Reference\GeoTool\r06_csa4\Style\NEPA_SOP\Roads.lyr"
+roadSym = r"{'ExamplePath'}Roads.lyr"
 
 
 ### Functions ###
@@ -221,5 +221,6 @@ arcpy.AddMessage("Processing INFRA Roads")
 infraRds(rdConv, rdDecom, rdExist, rdPlan, 
              fullpath, pab_union, roads, roadSym, mxd,
              fullpath)
+
 
 
