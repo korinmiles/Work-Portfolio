@@ -133,7 +133,7 @@ arcpy.env.outputCoordinateSystem = sr
 #----------------- global variables not in the config -------------------------
 
 # project area boundary symbology
-pabSym = r"T:\FS\Reference\GeoTool\r06_csa4\Style\NEPA_SOP\Project Boundary.lyr"
+pabSym = r"{'ExamplePath'}\NEPA_SOP\Project Boundary.lyr"
 pab_symbology = pabSym
 
 # acres/miles calculations
@@ -141,36 +141,36 @@ acExpress = """!Shape.area@acres!"""
 miExpress = """!Shape.length@miles!"""
 
 
-if region == "Region01" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R01.Hydrography\S_R01.NHDFlowline";
-elif region == "Region02" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R02.Hydrography\S_R02.NHDFlowline";   
-elif region == "Region03" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R03.Hydrography\S_R03.NHDFlowline";
-elif region == "Region04" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R04.Hydrography\S_R04.NHDFlowline";
-elif region == "Region05" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R05.Hydrography\S_R05.NHDFlowline";
-elif region == "Region06" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R06.HydrographyPrj\S_R06.NHDFlowlinePrj";
-elif region == "Region08" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_NHD.Hydro_08_NHD\S_NHD.Hydro_08_NHD_Flowline";
-elif region == "Region09" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R09.Hydrography\S_R09.NHDFlowline";
-elif region == "Region10" : nhdFlow = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_R10.Hydrography\S_R10.NHDFlowline"
+if region == "Region01" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R01.Hydrography\S_R01.NHDFlowline";
+elif region == "Region02" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R02.Hydrography\S_R02.NHDFlowline";   
+elif region == "Region03" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R03.Hydrography\S_R03.NHDFlowline";
+elif region == "Region04" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R04.Hydrography\S_R04.NHDFlowline";
+elif region == "Region05" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R05.Hydrography\S_R05.NHDFlowline";
+elif region == "Region06" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R06.HydrographyPrj\S_R06.NHDFlowlinePrj";
+elif region == "Region08" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_NHD.Hydro_08_NHD\S_NHD.Hydro_08_NHD_Flowline";
+elif region == "Region09" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R09.Hydrography\S_R09.NHDFlowline";
+elif region == "Region10" : nhdFlow = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_R10.Hydrography\S_R10.NHDFlowline"
 
 
 
 
 # NHD flow lines for clipping to subwatershed after it's created
 ##nhdFlow = r"T:\FS\Reference\GeoTool\r06\DatabaseConnection\edw_sde_default_as_myself.sde\S_R06.HydrographyPrj\S_R06.NHDFlowlinePrj"
-perennSym = r"T:\FS\Reference\GeoTool\r06_csa4\Style\NEPA_SOP\Streams.lyr"
+perennSym = r"{'ExamplePath'}\NEPA_SOP\Streams.lyr"
 
 # roads data
-rdConv = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Converted"
-rdDecom = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Decommissioned"
-rdExist = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Existing"
-rdPlan = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Planned"
-roads = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.Road"
+rdConv = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Converted"
+rdDecom = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Decommissioned"
+rdExist = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Existing"
+rdPlan = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.RoadCore_Planned"
+roads = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.Transportation\S_USA.Road"
 
 # road symbology
-roadSym = r"T:\FS\Reference\GeoTool\r06_csa4\Style\NEPA_SOP\Roads.lyr"
+roadSym = r"{'ExamplePath'}\NEPA_SOP\Roads.lyr"
 
 # veg data
-veg = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.NRIS_Veg\S_USA.NRIS_VegPoly"
-vegTbl = r"T:\FS\Reference\GeoTool\agency\DatabaseConnection\edw_sde_default_as_myself.sde\S_USA.NRIS_VegCharacterizations"
+veg = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.NRIS_Veg\S_USA.NRIS_VegPoly"
+vegTbl = r"{'ExamplePath'}\edw_sde_default_as_myself.sde\S_USA.NRIS_VegCharacterizations"
 
 
 #-----------------------------Functions----------------------------------------
@@ -1029,6 +1029,7 @@ update_datasets(dataset_list, metadata_update_dict, abstract_dict)
 #---------------- Create basemap for the project -------------------
 baseMap = mxd.saveACopy(os.path.join(folder_loc, "GIS", "MXD", "BaseMap.mxd"))
 arcpy.AddMessage("Base map saved successfully")
+
 
 
 
